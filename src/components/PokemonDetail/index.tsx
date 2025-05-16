@@ -1,20 +1,28 @@
 import { Pokemon } from "@/types/pokemon";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useMemo, useCallback } from "react";
 
 export default function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
   const router = useRouter();
 
-  const evolutionChain = [pokemon, ...(pokemon.evolutions || [])];
-  const checkIfEmpty = (text: string | number | null | undefined): string => {
+  const evolutionChain = useMemo(() => [pokemon, ...(pokemon.evolutions || [])], [pokemon]);
+
+  const checkIfEmpty = useCallback((text: string | number | null | undefined): string => {
     if (text === null || text === undefined) return "N/A";
-
-    if (typeof text === "number") {
-      return text.toString();
-    }
-
+    if (typeof text === "number") return text.toString();
     return text.trim() === "" ? "N/A" : text;
-  };
+  }, []);
+
+  const arrowStyle = useMemo(
+    () => ({
+      fontSize: "2rem",
+      margin: "0 10px",
+      color: "#6c757d",
+    }),
+    []
+  );
+
   return (
     <div className="container my-5">
       <div className="card shadow-lg p-4">
@@ -183,14 +191,7 @@ export default function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
 
                   {/* Arrow */}
                   {idx < evolutionChain.length - 1 && (
-                    <div
-                      style={{
-                        fontSize: "2rem",
-                        margin: "0 10px",
-                        color: "#6c757d",
-                      }}
-                      aria-hidden="true"
-                    >
+                    <div style={arrowStyle} aria-hidden="true">
                       &#8594;
                     </div>
                   )}

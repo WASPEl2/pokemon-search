@@ -1,14 +1,19 @@
 import { Pokemon } from "@/types/pokemon";
 import Link from "next/link";
+import { useMemo } from "react";
 
 export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
   // Compute total attack range
-  const allAttacks = [
-    ...(pokemon.attacks?.fast || []),
-    ...(pokemon.attacks?.special || []),
-  ];
-  const minDamage = Math.min(...allAttacks.map((a) => a.damage));
-  const maxDamage = Math.max(...allAttacks.map((a) => a.damage));
+  const [minDamage, maxDamage] = useMemo(() => {
+    const allAttacks = [
+      ...(pokemon.attacks?.fast || []),
+      ...(pokemon.attacks?.special || []),
+    ];
+    if (allAttacks.length === 0) return [0, 0];
+
+    const damages = allAttacks.map((a) => a.damage);
+    return [Math.min(...damages), Math.max(...damages)];
+  }, [pokemon.attacks]);
 
   return (
     <Link href={`/pokemon/${pokemon.name}`} className="text-decoration-none">
