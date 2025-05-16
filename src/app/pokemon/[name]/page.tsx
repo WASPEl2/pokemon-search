@@ -3,7 +3,6 @@
 import { useParams } from "next/navigation";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 import { GET_POKEMON } from "@/graphql/queries";
 import client from "@/lib/apolloClient";
@@ -28,14 +27,14 @@ export default function PokemonPage() {
             Pokémon Not Found
           </h1>
           <p className="text-muted mb-4">
-            We couldn't find the Pokémon you're looking for.
+            We could not find the Pokémon you are looking for.
           </p>
           <div>
             <button
               className="btn btn-outline-primary me-2"
               onClick={() => router.back()}
             >
-              ← Go Back
+              Go Back
             </button>
           </div>
         </div>

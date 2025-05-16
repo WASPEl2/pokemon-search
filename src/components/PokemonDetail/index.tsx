@@ -38,7 +38,7 @@ export default function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
             className="btn btn-outline-secondary "
             onClick={() => router.back()}
           >
-            ← Back
+            Back
           </button>
           <button
             className="btn btn-outline-secondary "
