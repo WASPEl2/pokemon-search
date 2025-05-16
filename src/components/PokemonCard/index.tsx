@@ -1,4 +1,5 @@
 import { Pokemon } from "@/types/pokemon";
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
 
@@ -21,7 +22,7 @@ export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
         className="card h-100 shadow-sm transition-transform"
         style={{ transition: "transform 0.2s ease-in-out" }}
       >
-        <img
+        <Image
           className="p-3"
           src={pokemon.image}
           style={{ objectFit: "contain", height: "200px" }}

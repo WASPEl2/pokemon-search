@@ -2,17 +2,24 @@ import { Pokemon } from "@/types/pokemon";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useMemo, useCallback } from "react";
+import Image from "next/image";
 
 export default function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
   const router = useRouter();
 
-  const evolutionChain = useMemo(() => [pokemon, ...(pokemon.evolutions || [])], [pokemon]);
+  const evolutionChain = useMemo(
+    () => [pokemon, ...(pokemon.evolutions || [])],
+    [pokemon]
+  );
 
-  const checkIfEmpty = useCallback((text: string | number | null | undefined): string => {
-    if (text === null || text === undefined) return "N/A";
-    if (typeof text === "number") return text.toString();
-    return text.trim() === "" ? "N/A" : text;
-  }, []);
+  const checkIfEmpty = useCallback(
+    (text: string | number | null | undefined): string => {
+      if (text === null || text === undefined) return "N/A";
+      if (typeof text === "number") return text.toString();
+      return text.trim() === "" ? "N/A" : text;
+    },
+    []
+  );
 
   const arrowStyle = useMemo(
     () => ({
@@ -41,7 +48,7 @@ export default function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
           </button>
         </div>
         <div className="text-center mb-4">
-          <img
+          <Image
             src={pokemon.image}
             alt={pokemon.name}
             className="img-fluid my-3"
@@ -174,7 +181,7 @@ export default function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
                       className="card text-center border-0 shadow-sm"
                       style={{ width: "150px" }}
                     >
-                      <img
+                      <Image
                         src={evo.image}
                         alt={evo.name}
                         className="card-img-top p-3"
