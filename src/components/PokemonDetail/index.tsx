@@ -51,8 +51,10 @@ export default function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
           <Image
             src={pokemon.image}
             alt={pokemon.name}
+            width={200}
+            height={200}
             className="img-fluid my-3"
-            style={{ maxHeight: "200px", objectFit: "contain" }}
+            style={{ objectFit: "contain" }}
           />
           <h1 className="display-5 fw-bold">
             {pokemon.name} <span className="text-muted">#{pokemon.number}</span>
@@ -184,8 +186,10 @@ export default function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
                       <Image
                         src={evo.image}
                         alt={evo.name}
+                        width={150}
+                        height={120}
                         className="card-img-top p-3"
-                        style={{ height: "120px", objectFit: "contain" }}
+                        style={{ objectFit: "contain" }}
                       />
                       <div className="card-body">
                         <h6 className="card-title text-dark">

@@ -22,12 +22,16 @@ export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
         className="card h-100 shadow-sm transition-transform"
         style={{ transition: "transform 0.2s ease-in-out" }}
       >
-        <Image
-          className="p-3"
-          src={pokemon.image}
-          style={{ objectFit: "contain", height: "200px" }}
-          alt={pokemon.name}
-        />
+        <div className="position-relative w-100" style={{ height: "200px" }}>
+          <div className="h-100 w-100" style={{ position: "relative" }}>
+            <Image
+              src={pokemon.image}
+              alt={pokemon.name}
+              fill
+              style={{ objectFit: "contain", padding: "1rem" }}
+            />
+          </div>
+        </div>
         <div className="card-body">
           <h5 className="card-title fw-bold mb-1 text-dark hover-underline">
             {pokemon.name}
